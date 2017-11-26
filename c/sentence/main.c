@@ -12,7 +12,7 @@
 #include "sentence.h"
 
 int main(void) {
-	printf("Fun with structs\n"); /* prints !!!Hello World!!! */
+	printf("Fun with structs\n");
 
 	char deletedWord[16];
 
