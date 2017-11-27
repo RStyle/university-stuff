@@ -49,8 +49,8 @@ void insertWordAtPosition(struct sentence *mySentence, char value[16], int posit
 			mySentence->pLast->pNext = pInputWord;
 			mySentence->pFirst = pInputWord;
 		}
-	} else if(mySentence->pFirst != NULL) {	//insert Word between Front and End
-		if(position > 0 && position < count) {
+	} else if(mySentence->pFirst != NULL) {
+		if(position > 0 && position < count) {	//insert Word between Front and End
 				struct word* pWord = mySentence->pFirst;
 				for(int i = 0; i < position - 1; i++) {
 					pWord = pWord->pNext;
@@ -68,9 +68,11 @@ void insertWordAtPosition(struct sentence *mySentence, char value[16], int posit
 			mySentence->pLast = pInputWord;
 		} else {
 			printf("Insert Error: position %d out of Bounce[0-%d]\n", position, count-1);
+			free(pInputWord);
 		}
 	} else {
 		printf("Insert Error: position %d out of Bounce, sentence is empty\n", position);
+		free(pInputWord);
 	}
 }
 
@@ -84,7 +86,7 @@ void printSentence(struct sentence mySentence) {
 		} while (pWord != mySentence.pFirst);
 		printf("\n");
 	} else {
-		printf("Print Error: empty list!\n");
+		printf("Print Error: empty list\n");
 	}
 }
 
@@ -96,6 +98,7 @@ struct sentence createSentenceFromArray(char myArray[][16], int quantity) {
 		}
 		return mySentence;
 	}
+	return createEmptySentence();
 }
 
 void deleteWordAtFront(struct sentence *mySentence, char *pDeletedWord) {
@@ -159,7 +162,7 @@ void deleteWordAtPosition(struct sentence *mySentence, char *pDeletedWord, int p
 
 void deleteSentence(struct sentence *mySentence) {
 	char ch[16];
-	while(mySentence->pLast != NULL) {
+	while(mySentence->pFirst != NULL) {
 		deleteWordAtFront(mySentence, ch);
 	}
 }
