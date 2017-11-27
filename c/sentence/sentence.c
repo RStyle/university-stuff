@@ -81,8 +81,8 @@ void printSentence(struct sentence mySentence) {
 	if(mySentence.pFirst != NULL) {
 		struct word* pWord = mySentence.pFirst;
 		do {
-		printf("%s\t", pWord->value);
-		pWord = pWord->pNext;
+			printf("%s\t", pWord->value);
+			pWord = pWord->pNext;
 		} while (pWord != mySentence.pFirst);
 		printf("\n");
 	} else {
