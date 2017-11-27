@@ -51,15 +51,15 @@ void insertWordAtPosition(struct sentence *mySentence, char value[16], int posit
 		}
 	} else if(mySentence->pFirst != NULL) {
 		if(position > 0 && position < count) {	//insert Word between Front and End
-				struct word* pWord = mySentence->pFirst;
-				for(int i = 0; i < position - 1; i++) {
-					pWord = pWord->pNext;
-				}
-				// now pWord is the Word at position-1
-				pInputWord->pPrevious = pWord;
-				pInputWord->pNext = pWord->pNext;
-				pWord->pNext->pPrevious = pInputWord;
-				pWord->pNext = pInputWord;
+			struct word* pWord = mySentence->pFirst;
+			for(int i = 0; i < position - 1; i++) {
+				pWord = pWord->pNext;
+			}
+			// now pWord is the Word at position-1
+			pInputWord->pPrevious = pWord;
+			pInputWord->pNext = pWord->pNext;
+			pWord->pNext->pPrevious = pInputWord;
+			pWord->pNext = pInputWord;
 		} else if(position == count) {	// insert Word At End
 			pInputWord->pNext = mySentence->pFirst;
 			pInputWord->pPrevious = mySentence->pLast;
@@ -91,14 +91,13 @@ void printSentence(struct sentence mySentence) {
 }
 
 struct sentence createSentenceFromArray(char myArray[][16], int quantity) {
+	struct sentence mySentence = createEmptySentence();
 	if(quantity > 0) {
-		struct sentence mySentence = createEmptySentence();
 		for(int i = 0; i < quantity; i++) {
 			insertWordAtEnd(&mySentence, myArray[i]);
 		}
-		return mySentence;
 	}
-	return createEmptySentence();
+	return mySentence;
 }
 
 void deleteWordAtFront(struct sentence *mySentence, char *pDeletedWord) {
