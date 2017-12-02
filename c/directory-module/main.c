@@ -1,5 +1,5 @@
 /*
- * main.c
+ *  main.c
  *
  *  Created on: 29.11.2017
  *  Author: group work by RStyle and 2 fellow students
