@@ -38,7 +38,7 @@ void insert(struct VerzeichnisBaum *tree, char fatherName[], char newName[]) {
 			printf("Insert Error: Vater nicht gefunden.\n");
 		}
 	} else {
-    	printf("Insert Error: Verzeichnisname bereits verwendet.\n");
+    		printf("Insert Error: Verzeichnisname bereits verwendet.\n");
 	}
 
 }
@@ -67,9 +67,9 @@ void delete(struct VerzeichnisBaum *tree, char dir[]) {
 	struct Verzeichnis *hilf;
 
 	if (pCurrent == NULL) {        	//check if root or has children
-    	printf("Delete Error: Verzeichnis nicht vorhanden.\n");
+    		printf("Delete Error: Verzeichnis nicht vorhanden.\n");
 	} else if (pCurrent->pChildren != NULL) {
-    	printf("Delete Error: Verzeichnis besitzt Unterverzeichnisse.\n");
+    		printf("Delete Error: Verzeichnis besitzt Unterverzeichnisse.\n");
 	} else {
 		if (pCurrent == tree->pRoot) {
 			kill(tree);
@@ -88,7 +88,7 @@ void delete(struct VerzeichnisBaum *tree, char dir[]) {
 
 void print(struct VerzeichnisBaum tree) {
 	if (tree.pRoot != NULL) {
-    	printDir(tree.pRoot, 0);
+    		printDir(tree.pRoot, 0);
 	} else {
 		printf("Print Error: Verzeichnisbaum ist leer.");
 	}
@@ -99,8 +99,8 @@ void printDir(struct Verzeichnis *dir, int level){
 		for(int i = 0; i < level; i++)
 			printf("\t");
 		printf("%s\n", dir->name);
-    	printDir(dir->pChildren, level + 1);
-    	printDir(dir->pNext, level);
+		printDir(dir->pChildren, level + 1);
+		printDir(dir->pNext, level);
 	}
 }
 
@@ -111,8 +111,8 @@ void kill(struct VerzeichnisBaum *tree) {
 
 void killAllDirs(struct Verzeichnis *dir) {
 	if(dir != NULL) {
-    	killAllDirs(dir->pChildren);
-    	killAllDirs(dir->pNext);
-    	free(dir);
+		killAllDirs(dir->pChildren);
+		killAllDirs(dir->pNext);
+		free(dir);
 	}
 }
